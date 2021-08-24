@@ -1,6 +1,5 @@
 const cheerio = require('cheerio')
 const axios = require('axios')
-const { deadlineFormat } = require('./deadlineFormat.js')
 
 const parser = async () =>  {
     const getHTML = async (url) => {
@@ -8,15 +7,16 @@ const parser = async () =>  {
         return cheerio.load(data)
     }
     
-    const $ = await getHTML('https://www.sports.ru/epl/table/')
+    const $ = await getHTML('https://www.sports.ru/fantasy/football/team/points/2328608.html')
         
-    const deadline = $('div.teaser-event__status span').eq(0).text()
+    const deadline = $('.team-info-block .profile-table').eq(0).text()
     
+    deadline.trim()
     
-    //console.log(deadlineFormat(deadline))
-    return deadlineFormat(deadline)
+    //console.log(deadline)
+    return deadline
 }
 
-//parser()
+
 
 module.exports.parser = parser

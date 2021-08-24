@@ -29,7 +29,7 @@ bot.action('btn_1', async (ctx) => {
     try {
         await ctx.answerCbQuery()
         await ctx.reply('------------Deadline----------')
-        ctx.replyWithHTML(`<b>Deadline:</b> ${await parser()}`)
+        ctx.replyWithHTML(`${await parser()}`)
     } catch(e) {
         console.error(e)
     }

@@ -8,15 +8,15 @@ const commands = `
 `
 
 const pointsPerTour = [
-    {name:`<b>Senya</b>`, points: 77},
-    {name:`<b>Valdis</b>`, points: 27},
-    {name:`<b>Denis</b>`, points: 37}
+    {name:`<b>Senya</b>`, points: 42},
+    {name:`<b>Valdis</b>`, points: 44},
+    {name:`<b>Denis</b>`, points: 51}
 ]
 
 const totalPoints = [
-    {name:`<b>Senya</b>`, points: 77},
-    {name:`<b>Valdis</b>`, points: 27},
-    {name:`<b>Denis</b>`, points: 37}
+    {name:`<b>Senya</b>`, points: 119},
+    {name:`<b>Valdis</b>`, points: 88},
+    {name:`<b>Denis</b>`, points: 71}
 ] 
 
 module.exports.commands = commands
