@@ -1,7 +1,7 @@
 const cheerio = require('cheerio')
 const axios = require('axios')
 
-const parser = async () =>  {
+const parserDeadline = async () =>  {
     const getHTML = async (url) => {
         const { data } = await axios.get(url)
         return cheerio.load(data)
@@ -19,4 +19,4 @@ const parser = async () =>  {
 
 
 
-module.exports.parser = parser
+module.exports.parserDeadline = parserDeadline

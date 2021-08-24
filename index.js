@@ -1,7 +1,7 @@
 const { Telegraf, Markup } = require('telegraf')
 const { pointsPerTour, totalPoints } = require('./const')
-const { parser } = require('./parser')
-const { sortArray } = require('./sortArray')
+const { parserDeadline } = require('./parserDeadline')
+const { parserPoints } = require('./parserPoints')
 const text = require('./const')
 require('dotenv').config()
 
@@ -29,7 +29,7 @@ bot.action('btn_1', async (ctx) => {
     try {
         await ctx.answerCbQuery()
         await ctx.reply('------------Deadline----------')
-        ctx.replyWithHTML(`${await parser()}`)
+        ctx.replyWithHTML(`${await parserDeadline()}`)
     } catch(e) {
         console.error(e)
     }
@@ -57,10 +57,24 @@ bot.action('btn_3', async (ctx) => {
     try {
         await ctx.answerCbQuery()
         await ctx.reply('------------Points per tour----------')
-        await sortArray(pointsPerTour)
-        await pointsPerTour.map(el => {
-        ctx.replyWithHTML(el.name + ':' + el.points)
-    })} catch(e) {
+        const places = await parserPoints()
+        // await sortArray(pointsPerTour)
+        // await pointsPerTour.map(el => {
+            ctx.replyWithHTML(`
+            ---------------------------------------------------------
+            Place       Team        Points per tour     Total Points 
+            ---------------------------------------------------------
+            ${places.firstPlace[0]} ${places.firstPlace[1]} ${places.firstPlace[2]} ${places.firstPlace[3]} 
+            ---------------------------------------------------------  
+            ${places.secondPlace[0]} ${places.secondPlace[1]} ${places.secondPlace[2]} ${places.secondPlace[3]}
+            --------------------------------------------------------   
+            ${places.thirdPlace[0]} ${places.thirdPlace[1]} ${places.thirdPlace[2]} ${places.thirdPlace[3]}  
+            ------------------------------------------------------- 
+            `)
+        
+        
+        //})
+    } catch(e) {
         console.error(e)
     }
 })
@@ -76,30 +90,31 @@ bot.action('btn_4', async (ctx) => {
     }
 })
 
-bot.command('deadline',async (ctx) => {
-     ctx.replyWithHTML(`<b>Deadline:</b> ${await parser()}`)
-})
+// bot.command('deadline',async (ctx) => {
+//      ctx.replyWithHTML(`<b>Deadline:</b> ${await parser()}`)
+// })
 
-bot.command('pointspertour', async (ctx) => {
-    await ctx.reply('------------Points per tour----------')
-    await sortArray(pointsPerTour)
-    await pointsPerTour.map(el => {
-        ctx.replyWithHTML(el.name + ':' + el.points)
-    })
-})
+// bot.command('pointspertour', async (ctx) => {
+//     await ctx.reply('------------Points per tour----------')
+//     await sortArray(pointsPerTour)
+//     await pointsPerTour.map(el => {
+//         ctx.replyWithHTML(el.name + ':' + el.points)
+//     })
+// })
 
-bot.command('totalpoints', async (ctx) => {
-        await ctx.reply('------------Total points----------')
-        await totalPoints.map((el) => {
-            ctx.replyWithHTML(el.name + ':' + el.points)
-    })
-})
+// bot.command('totalpoints', async (ctx) => {
+//         await ctx.reply('------------Total points----------')
+//         await totalPoints.map((el) => {
+//             ctx.replyWithHTML(el.name + ':' + el.points)
+//     })
+// })
 
-bot.command('currentteams', (ctx) => {
+// bot.command('currentteams', (ctx) => {
 
-})
+// })
 bot.launch()
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))
+
