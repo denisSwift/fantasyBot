@@ -64,11 +64,11 @@ bot.action('btn_3', async (ctx) => {
 // ---------------------------------------------------------
 // Место       Команда             ОТ          ОС 
 // ---------------------------------------------------------
-// ${places.firstPlace[0]}            ${places.firstPlace[1]}          ${places.firstPlace[2]}         ${places.firstPlace[3]} 
+// ${places.firstPlace[0]}              ${places.firstPlace[1]}          ${places.firstPlace[2]}         ${places.firstPlace[3]} 
 // ---------------------------------------------------------  
-// ${places.secondPlace[0]}            ${places.secondPlace[1]}          ${places.secondPlace[2]}        ${places.secondPlace[3]}
+// ${places.secondPlace[0]}              ${places.secondPlace[1]}          ${places.secondPlace[2]}        ${places.secondPlace[3]}
 // ---------------------------------------------------------   
-// ${places.thirdPlace[0]}            ${places.thirdPlace[1]}          ${places.thirdPlace[2]}         ${places.thirdPlace[3]}  
+// ${places.thirdPlace[0]}              ${places.thirdPlace[1]}          ${places.thirdPlace[2]}         ${places.thirdPlace[3]}  
 // --------------------------------------------------------- 
 
             `)
