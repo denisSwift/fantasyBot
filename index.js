@@ -70,6 +70,7 @@ bot.action('btn_3', async (ctx) => {
                     <th>Очков в сезоне</th>
                 </tr>
                 <tr><td>${places.firstPlace[0]}</td><td>${places.firstPlace[1]}</td><td>${places.firstPlace[2]}</td><td>${places.firstPlace[3]}</td></tr>
+                </table>
             `)
 // ---------------------------------------------------------
 // Место       Команда        ОТ     ОС 
