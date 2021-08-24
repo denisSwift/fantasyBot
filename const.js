@@ -7,18 +7,5 @@ const commands = `
 /currentteams - Текущие составы
 `
 
-const pointsPerTour = [
-    {name:`<b>Senya</b>`, points: 42},
-    {name:`<b>Valdis</b>`, points: 44},
-    {name:`<b>Denis</b>`, points: 51}
-]
-
-const totalPoints = [
-    {name:`<b>Senya</b>`, points: 119},
-    {name:`<b>Valdis</b>`, points: 71},
-    {name:`<b>Denis</b>`, points: 88}
-] 
 
 module.exports.commands = commands
-module.exports.pointsPerTour = pointsPerTour
-module.exports.totalPoints = totalPoints

@@ -1,5 +1,4 @@
 const { Telegraf, Markup } = require('telegraf')
-const { pointsPerTour, totalPoints } = require('./const')
 const { parserDeadline } = require('./parserDeadline')
 const { parserPoints } = require('./parserPoints')
 const text = require('./const')
@@ -28,8 +27,11 @@ bot.help((ctx) => ctx.reply(text.commands))
 bot.action('btn_1', async (ctx) => {
     try {
         await ctx.answerCbQuery()
-        await ctx.reply('------------Deadline----------')
-        ctx.replyWithHTML(`${await parserDeadline()}`)
+        //await ctx.reply('------------Deadline----------')
+        ctx.replyWithHTML(`
+---------------Дэдлайн---------------
+${await parserDeadline()}
+`)
     } catch(e) {
         console.error(e)
     }
@@ -61,17 +63,22 @@ bot.action('btn_3', async (ctx) => {
         // await sortArray(pointsPerTour)
         // await pointsPerTour.map(el => {
             ctx.replyWithHTML(`
+---------------Очков за тур:---------------
+${places.firstPlace[1]}: ${places.firstPlace[2]} очков
+${places.secondPlace[1]}: ${places.secondPlace[2]} очков
+${places.thirdPlace[1]}: ${places.thirdPlace[2]} очков
+            `)
 // ---------------------------------------------------------
 // Место       Команда             ОТ          ОС 
 // ---------------------------------------------------------
-// ${places.firstPlace[0]}              ${places.firstPlace[1]}          ${places.firstPlace[2]}         ${places.firstPlace[3]} 
+// ${places.firstPlace[0]}                ${places.firstPlace[1]}                  ${places.firstPlace[2]}         ${places.firstPlace[3]} 
 // ---------------------------------------------------------  
-// ${places.secondPlace[0]}              ${places.secondPlace[1]}          ${places.secondPlace[2]}        ${places.secondPlace[3]}
+// ${places.secondPlace[0]}                ${places.secondPlace[1]}                    ${places.secondPlace[2]}        ${places.secondPlace[3]}
 // ---------------------------------------------------------   
-// ${places.thirdPlace[0]}              ${places.thirdPlace[1]}          ${places.thirdPlace[2]}         ${places.thirdPlace[3]}  
-// --------------------------------------------------------- 
+// ${places.thirdPlace[0]}                ${places.thirdPlace[1]}                  ${places.thirdPlace[2]}         ${places.thirdPlace[3]}  
+//--------------------------------------------------------- 
 
-            `)
+            
 
         
         
@@ -82,13 +89,17 @@ bot.action('btn_3', async (ctx) => {
 })
 
 bot.action('btn_4', async (ctx) => {
-    try {
-        await ctx.answerCbQuery()
-        await ctx.reply('------------Total points----------')
-        await totalPoints.map(el => {
-        ctx.replyWithHTML(el.name + ':' + el.points)
-    })} catch(e) {
-        console.error(e)
+     try {
+         await ctx.answerCbQuery()
+         const places = await parserPoints()
+        ctx.replyWithHTML(`
+---------------Итоговая Таблица:---------------
+${places.firstPlace[0]}.  ${places.firstPlace[1]} - ${places.firstPlace[3]} очков
+${places.secondPlace[0]}.  ${places.secondPlace[1]} - ${places.secondPlace[3]} очков
+${places.thirdPlace[0]}.  ${places.thirdPlace[1]} - ${places.thirdPlace[3]} очков
+`)
+} catch(e) {
+       console.error(e)
     }
 })
 
